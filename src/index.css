@@ -1,0 +1,7 @@
+body {
+  min-width: 1040px;
+}
+
+.inline {
+  display: inline-block;
+}

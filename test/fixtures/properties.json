@@ -1,0 +1,41 @@
+{ 
+  "data": 
+    [
+      {
+        "type": "property",
+        "id": "1",
+        "title": "Test Property from the API",
+        "description": "Test Property",
+        "created_at": "2017-01-1 01:01:01 UTC",
+        "acknowledged": false,
+        "preview_link": "some/url/preview",
+      },
+      {
+        "type": "property",
+        "id": "2",                
+        "title": "Test Property from the API 2",
+        "description": "Test Property",
+        "created_at": "2017-01-1 01:01:01 UTC",
+        "acknowledged": false,
+        "preview_link": "some/url/preview",
+      },
+      {
+        "type": "property",
+        "id": "3",                
+        "title": "Test Property from the API 3",
+        "description": "Test Property",
+        "created_at": "2017-01-1 01:01:01 UTC",
+        "acknowledged": false,
+        "preview_link": "some/url/preview",
+      },
+      {
+        "type": "property",
+        "id": "4",                
+        "title": "Test Property from the API 4",
+        "description": "Test Property",
+        "created_at": "2017-01-1 01:01:01 UTC",
+        "acknowledged": false,
+        "preview_link": "some/url/preview",
+      },
+    ]
+}
