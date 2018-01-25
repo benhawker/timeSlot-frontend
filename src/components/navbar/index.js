@@ -27,7 +27,7 @@ class Navbar extends Component {
     };
   }
 
-  // Load properties
+  // Load properties on page load.
   componentDidMount() {
     this.props.propertyActions.loadProperties(null);
   }
@@ -39,7 +39,7 @@ class Navbar extends Component {
           <header>
             <Link to="/">Home</Link>
             <Link to="/properties">Properties</Link>
-            <Link to="/time_slots">Time Slots</Link>
+            <Link to="/inquiries">Inquiries</Link>
           </header>
         </nav>
       </div>

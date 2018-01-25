@@ -11,8 +11,14 @@ function loadTimeSlots(property) {
   return (dispatch) => {
     return axiosGet
       .then(
-        success => dispatch(loadTimeSlotsSuccess(success)),
-        error => dispatch(loadTimeSlotsFailure(error))
+        success => {
+          dispatch(loadTimeSlotsSuccess(success));
+          dispatch(addFlashNotification('Time Slots loaded.', 'success'));
+        },
+        error => {
+          dispatch(loadTimeSlotsFailure(error));
+          dispatch(addFlashNotification('Could not fetch time slots.', 'error'));
+        },
       );
   };
 }

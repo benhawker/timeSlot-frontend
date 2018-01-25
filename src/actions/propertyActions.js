@@ -36,18 +36,11 @@ function loadPropertiesRequest(){
   }
 }
 
-function setProperty(payload){
-  return {
-    type: types.SET_PROPERTY,
-    payload,
-  }
-}
 
 export { 
          loadProperties,
          loadPropertiesFailure,
          loadPropertiesSuccess,
          loadPropertiesRequest,
-         setProperty,
        }
 

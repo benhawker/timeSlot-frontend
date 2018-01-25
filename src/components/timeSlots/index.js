@@ -18,7 +18,13 @@ class TimeSlotsContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.timeSlotActions.loadTimeSlots(null);
+    if (this.props.location.state == null) {
+      this.props.history.push("/");
+    } else {
+      this.props.timeSlotActions.loadTimeSlots(this.props.location.state.propertyId);
+    }
+
+   
   }
 
   render() {
@@ -26,6 +32,7 @@ class TimeSlotsContainer extends Component {
 
     return(
       <div className='container-fluid'>
+
         <div id='time-slots-container'>
           <TimeSlots
             key={ '1' }
@@ -40,8 +47,7 @@ class TimeSlotsContainer extends Component {
 
 function mapStateToProps(state) {
  return {
-    timeSlots: state.selectedProperty.timeSlots,
-    selectedProperty: state.selectedProperty.property,
+    timeSlots: state.timeSlots,
   }
 }
 

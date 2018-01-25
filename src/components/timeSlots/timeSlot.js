@@ -11,11 +11,15 @@ class TimeSlot extends React.Component {
   }
 
   render() {
-    const {  } = this.props.timeSlot;
+    const { id, title, timeOfSlot, createdAt } = this.props.timeSlot;
 
     return (
       <div>
-        Info on a slot
+        <div className="timeSlot">
+          <div className="innerTimeSlot">
+            <a className='datetime'>{ timeOfSlot }</a>
+          </div>
+        </div>
       </div>
     );
   }

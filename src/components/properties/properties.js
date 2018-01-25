@@ -32,22 +32,19 @@ class Properties extends Component {
 
     return (
       <div id='properties'>
-        <div className='properties level'>
-          <ul className='clearfix'> 
-            {
-              properties && Object.keys(properties).map(function(property, index) {
-                return <Property 
-                        key={ index }
-                        property={ properties[property] }
-                      />
-              })
-            }
+        <ul> 
+          {
+            properties && Object.keys(properties).map(function(property, index) {
+              return <Property 
+                      key={ index }
+                      property={ properties[property] }
+                    />
+            })
+          }
 
-            {/* Render no properties message if there are no properties. */}
-            { Object.keys(properties).length === 0 ? noPropertiesMessage : null}
-          </ul>
-      
-        </div>
+          {/* Render no properties message if there are no properties. */}
+          { Object.keys(properties).length === 0 ? noPropertiesMessage : null}
+        </ul>
       </div>
     );
   }
