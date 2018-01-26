@@ -20,6 +20,18 @@ class TimeSlots extends Component {
     timeSlotActions: {},
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {activeSlot: null};
+    // this.setAsSelected = this.setAsSelected.bind(this);
+    this.onSlotActive = this.onSlotActive.bind(this);
+  }
+
+  onSlotActive(timeSlot) {
+    this.setState({activeSlot: timeSlot});
+  }
+
+
   showingXSlots() {
     const timeSlotsLength = this.props.timeSlots.length;
 
@@ -37,6 +49,8 @@ class TimeSlots extends Component {
       </p>
     );
 
+    let self = this;
+
     return (
       <div id='timeSlots'>
         <div className="time-slots">
@@ -49,10 +63,12 @@ class TimeSlots extends Component {
           <ul className='clearfix'> 
             {
               timeSlots && Object.keys(timeSlots).map(function(timeSlot, index) {
-                return <TimeSlot 
-                        key={ index }
-                        timeSlot={ timeSlots[timeSlot] }
-                      />
+                return (<TimeSlot
+                          onSlotActive={ self.onSlotActive.bind(self) } 
+                          active={ timeSlots[timeSlot] === self.state.activeSlot }
+                          key={ index }
+                          timeSlot={ timeSlots[timeSlot] }
+                      />)
               })
             }
 

@@ -7,6 +7,10 @@
   text-align: center;
 }
 
+.active {
+  background: orange;
+}
+
 .innerTimeSlot {
   text-align: center;
 }

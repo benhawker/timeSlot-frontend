@@ -23,8 +23,6 @@ class TimeSlotsContainer extends Component {
     } else {
       this.props.timeSlotActions.loadTimeSlots(this.props.location.state.propertyId);
     }
-
-   
   }
 
   render() {
