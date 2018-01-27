@@ -15,3 +15,6 @@ export const CREATE_INQUIRY_FAILURE = 'CREATE_INQUIRY_FAILURE'
 
 // Flash Notifications
 export const ADD_FLASH_NOTIFICATION = 'ADD_FLASH_NOTIFICATION';
+
+// Set Selected TIme Slot
+export const SET_SELECTED_TIME_SLOT = 'SET_SELECTED_TIME_SLOT';

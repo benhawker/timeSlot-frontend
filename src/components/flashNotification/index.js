@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import * as FlashNotificationActions from '../../actions/flashNotificationActions';
 import NotificationSystem from 'react-notification-system';
 
-class FlashNotification extends Component {
-  constructor(props) {
-    super(props);
-  }
- 
+class FlashNotification extends Component { 
   componentDidMount() {
     this.notificationSystem = this.refs.notificationSystem;
   }

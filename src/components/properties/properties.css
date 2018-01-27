@@ -1,4 +1,9 @@
 #properties {
   border: 1px solid black;
   float: left;
+  width: 100%;
+}
+
+#properties ul {
+  padding-left: 0;
 }

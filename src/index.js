@@ -4,8 +4,6 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import store, { history } from './store'
 
-import FontAwesome from 'react-fontawesome';
-
 import { loadProperties } from './actions/propertyActions';
 
 import App from './components/app'

@@ -1,8 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
-
-import FontAwesome from 'react-fontawesome'; 
 
 import './property.css'
 import PropertyPropType from './propertyPropType'
@@ -30,36 +27,19 @@ class Property extends React.Component {
       <li className="property">
         <div className="innerProperty">
           <p className='title'>{ title }</p>
-
-          <Link to={{
-            pathname: 'time_slots',
-            state: { propertyId: id }
-          }}>
-            Time Slots
-          </Link>
+          <p className='description'>{ description }</p>
 
            <Link to={{
             pathname: 'inquiries',
             state: { propertyId: id }
           }}>
-            New Inquiry
+            Book a Viewing
           </Link>
 
           <div className="meta">
             <span className='datetime'>{ createdAt }</span>
-            <br />
-            <div className='description'>{ description }</div>
           </div>
 
-          <div className='links'>
-            <a href={ this.previewLink() } className="previewLink">
-              <FontAwesome 
-                name='download'
-                size='lg'
-                style={{ color: 'white', lineHeight: 1.2 }}
-              />
-            </a>
-          </div>
         </div>
       </li>
     );

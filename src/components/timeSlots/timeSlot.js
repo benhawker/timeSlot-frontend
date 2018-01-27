@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome'; 
 
 import './timeSlot.css'
 import TimeSlotPropType from './timeSlotPropType'
@@ -22,7 +21,7 @@ class TimeSlot extends React.Component {
   }
 
   render() {  
-    const { key, id, title, timeOfSlot, createdAt } = this.props.timeSlot;
+    const { timeOfSlot } = this.props.timeSlot;
 
     return (
       <div className={ this.props.active ? "timeSlot active" : "timeSlot"} onClick={this.setActive.bind(this) }>

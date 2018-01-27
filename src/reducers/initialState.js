@@ -3,4 +3,5 @@ export default {
   properties: {},
   timeSlots: {},
   inquiries: {},
+  selectedTimeSlot: {},
 } 

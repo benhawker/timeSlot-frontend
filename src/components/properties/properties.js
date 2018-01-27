@@ -9,7 +9,6 @@ import PropertyPropType from './propertyPropType'
 class Properties extends Component {
   static propTypes = {
     properties: PropTypes.shape(PropertyPropType).isRequired,
-    selectedProperty: PropTypes.object.isRequired,
     propertyActions: PropTypes.shape({
       loadProperties: PropTypes.func.isRequired,
     }),
@@ -22,7 +21,7 @@ class Properties extends Component {
 
  
   render() {
-    const { properties, selectedProperty } = this.props;
+    const { properties } = this.props;
 
     const noPropertiesMessage = (
       <p>

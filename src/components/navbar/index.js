@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import ReactDOM from 'react-dom';
 
 import * as PropertyActions from '../../actions/propertyActions'
 import PropertyPropType from '../properties/propertyPropType'
@@ -39,7 +38,6 @@ class Navbar extends Component {
           <header>
             <Link to="/">Home</Link>
             <Link to="/properties">Properties</Link>
-            <Link to="/inquiries">Inquiries</Link>
           </header>
         </nav>
       </div>

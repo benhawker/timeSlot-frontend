@@ -7,13 +7,14 @@ import * as TimeSlotActions from '../../actions/timeSlotActions'
 import TimeSlotPropType from './timeSlotPropType'
 import TimeSlots from './timeSlots'
 
-import './index.css'
+ import './index.css'
 
 class TimeSlotsContainer extends Component {
   static propTypes = {
     timeSlots: PropTypes.shape(TimeSlotPropType),
     timeSlotActions: PropTypes.shape({
       loadTimeSlots: PropTypes.func.isRequired,
+      setSelectedTimeSlot: PropTypes.func.isRequired,
     }).isRequired,
   }
 

@@ -5,6 +5,7 @@ import './timeSlots.css'
 
 import TimeSlot from './timeSlot'
 import TimeSlotPropType from './timeSlotPropType'
+import DaySelector from './daySelector'
 
 class TimeSlots extends Component {
   static propTypes = {
@@ -22,15 +23,24 @@ class TimeSlots extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {activeSlot: null};
+    this.state = {activeSlot: null, activeDay: null};
     // this.setAsSelected = this.setAsSelected.bind(this);
     this.onSlotActive = this.onSlotActive.bind(this);
+    this.onDayActive = this.onDayActive.bind(this);
   }
 
   onSlotActive(timeSlot) {
+    // TODO: Decide which state to use.
     this.setState({activeSlot: timeSlot});
+    this.props.timeSlotActions.setSelectedTimeSlot(timeSlot);
   }
 
+  onDayActive(day) {
+    this.setState({activeDay: day});
+    // this.props.timeSlotActions.setSelectedDay(day);
+    console.log("Day now active");
+    console.log(this.state.activeDay);
+  }
 
   showingXSlots() {
     const timeSlotsLength = this.props.timeSlots.length;
@@ -41,7 +51,7 @@ class TimeSlots extends Component {
   }
 
   render() {
-    const { timeSlots, selectedProperty } = this.props;
+    const { timeSlots } = this.props;
 
     const noSlotsMessage = (
       <p>
@@ -49,10 +59,27 @@ class TimeSlots extends Component {
       </p>
     );
 
+    const days = [0,1,2,3,4,5,6];
+
     let self = this;
 
     return (
       <div id='timeSlots'>
+        
+        <h6 className="showingXDays">
+          Showing the next 7 days.
+        </h6>
+        {
+          days.map(function(dayIndex, index) {
+            return(<DaySelector
+                      onDayActive={ self.onDayActive.bind(self) } 
+                      active={ days[index] === self.state.activeDay }
+                      dayIndex={ dayIndex }
+                      key={ index }
+                  />)
+          })
+        }
+
         <div className="time-slots">
           <h6 className="showingXSlots">
             { 

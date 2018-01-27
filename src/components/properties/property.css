@@ -1,6 +1,7 @@
 li.property {
   border: 1px solid black;
-  height: 100px;
+  height: 150px;
+  margin: 10px;
 }
 
 .innerProperty {

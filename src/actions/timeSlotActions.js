@@ -44,10 +44,18 @@ function loadTimeSlotsRequest(){
   }
 }
 
+function setSelectedTimeSlot(payload) {
+  return {
+    type: types.SET_SELECTED_TIME_SLOT,
+    payload,
+  }
+}
+
 export { 
          loadTimeSlots,
          loadTimeSlotsFailure,
          loadTimeSlotsSuccess,
          loadTimeSlotsRequest,
+         setSelectedTimeSlot,
        }
 

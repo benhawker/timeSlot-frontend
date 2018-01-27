@@ -37,7 +37,6 @@ class PropertiesContainer extends Component {
 function mapStateToProps(state) {
  return {
     properties: state.properties,
-    selectedProperty: state.selectedProperty,
   }
 }
 

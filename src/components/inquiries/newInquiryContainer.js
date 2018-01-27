@@ -11,9 +11,12 @@ import TimeSlotPropType from '../timeSlots/timeSlotPropType'
 import TimeSlots from '../timeSlots/timeSlots'
 import SingleInput from '../common/singleInput';
 
+import './container.css'
+
 class NewInquiryContainer extends Component {
   static propTypes = {
     timeSlots: PropTypes.shape(TimeSlotPropType),
+    selectedTimeSlot: TimeSlotPropType,
     timeSlotActions: PropTypes.shape({
       loadTimeSlots: PropTypes.func.isRequired,
     }).isRequired,
@@ -29,10 +32,20 @@ class NewInquiryContainer extends Component {
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleCustomerNameChange = this.handleCustomerNameChange.bind(this);
+    this.handleCustomerPhoneChange = this.handleCustomerPhoneChange.bind(this);
+    this.handleCustomerEmailChange = this.handleCustomerEmailChange.bind(this);
   }
 
   handleCustomerNameChange(e) {
     this.setState({ customerName: e.target.value });
+  }
+
+  handleCustomerEmailChange(e) {
+    this.setState({ customerEmail: e.target.value });
+  }
+
+  handleCustomerPhoneChange(e) {
+    this.setState({ customerPhone: e.target.value });
   }
 
   componentDidMount() {
@@ -45,9 +58,13 @@ class NewInquiryContainer extends Component {
     const inquiryId = UUID.v4();
 
     const formPayload = {
-      user: "ADD_CONCEPT_OF_USER",
-      clientName: this.props.selectedClient,
+      customerName: this.state.customerName,
+      customerPhone: this.state.customerPhone,
+      customerEmail: this.state.customerEmail,
+      selectedTimeSlot: this.props.selectedTimeSlot,
     };
+
+    console.log(formPayload);
 
     // Sends the payload in a PUT request.
     this.props.inquiryActions.createInquiry(inquiryId, formPayload)
@@ -60,9 +77,8 @@ class NewInquiryContainer extends Component {
   render() {
     const { timeSlots, timeSlotActions } = this.props;
 
-
     return (
-      <div>
+      <div className="newInquiryContainer">
         <form onSubmit={ this.handleFormSubmit }>
 
         <div id='time-slots-container'>
@@ -83,6 +99,25 @@ class NewInquiryContainer extends Component {
           placeholder={ "Name" }
         />
 
+         <SingleInput
+          classes={ 'PhoneInput' }
+          inputType={ 'text' }
+          title={ 'Phone' }
+          name={ 'phone' }
+          content={ this.state.customerPhone }
+          controlFunc={ this.handleCustomerPhoneChange }
+          placeholder={ "Telephone Number" }
+        />
+
+         <SingleInput
+          classes={ 'emailInput' }
+          inputType={ 'text' }
+          title={ 'Email' }
+          name={ 'email' }
+          content={ this.state.customerEmail }
+          controlFunc={ this.handleCustomerEmailChange }
+          placeholder={ "Email" }
+        />
 
         <input
           type="submit"
@@ -98,6 +133,7 @@ class NewInquiryContainer extends Component {
 function mapStateToProps(state) {
  return {
     timeSlots: state.timeSlots,
+    selectedTimeSlot: state.selectedTimeSlot,
   }
 }
 

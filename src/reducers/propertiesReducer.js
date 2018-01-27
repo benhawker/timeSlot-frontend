@@ -5,7 +5,7 @@ import camelize from 'camelize';
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    // Load Clients
+    // Load properties
     case types.LOAD_PROPERTIES:
       return action.payload;
     
