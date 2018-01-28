@@ -10,3 +10,7 @@
 .active {
   background: orange;
 }
+
+.innerDaySelector {
+  text-align: center;
+}

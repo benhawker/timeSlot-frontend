@@ -31,7 +31,6 @@ class TimeSlotsContainer extends Component {
 
     return(
       <div className='container-fluid'>
-
         <div id='time-slots-container'>
           <TimeSlots
             key={ '1' }

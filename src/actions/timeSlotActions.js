@@ -51,11 +51,19 @@ function setSelectedTimeSlot(payload) {
   }
 }
 
+function setSelectedDay(payload) {
+  return {
+    type: types.SET_SELECTED_DAY,
+    payload,
+  }
+}
+
 export { 
          loadTimeSlots,
          loadTimeSlotsFailure,
          loadTimeSlotsSuccess,
          loadTimeSlotsRequest,
          setSelectedTimeSlot,
+         setSelectedDay,
        }
 

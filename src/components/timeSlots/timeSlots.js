@@ -37,7 +37,7 @@ class TimeSlots extends Component {
 
   onDayActive(day) {
     this.setState({activeDay: day});
-    // this.props.timeSlotActions.setSelectedDay(day);
+    this.props.timeSlotActions.setSelectedDay(day);
     console.log("Day now active");
     console.log(this.state.activeDay);
   }
@@ -50,6 +50,16 @@ class TimeSlots extends Component {
     }
   }
 
+  dateFormatter(dateIdx) {
+    let dateObj = new Date();
+    dateObj.setDate(dateObj.getDate() + dateIdx);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1;
+    const day = dateObj.getDate();
+    const pad = function(val) { var str = val.toString(); return (str.length < 2) ? "0" + str : str};
+    return([year, pad(month), pad(day)].join("-"));
+  }
+
   render() {
     const { timeSlots } = this.props;
 
@@ -59,28 +69,33 @@ class TimeSlots extends Component {
       </p>
     );
 
-    const days = [0,1,2,3,4,5,6];
+
+    console.log(this.state.activeDay);
+    let filteredTimeSlots = Object.keys(timeSlots).filter(ts => timeSlots[ts].timeOfSlot.includes(this.state.activeDay));
+    const days = [1,2,3,4,5,6,7,8,9,10];
+    let dates = days.map(day => this.dateFormatter(day));
 
     let self = this;
 
     return (
-      <div id='timeSlots'>
-        
-        <h6 className="showingXDays">
-          Showing the next 7 days.
-        </h6>
-        {
-          days.map(function(dayIndex, index) {
-            return(<DaySelector
-                      onDayActive={ self.onDayActive.bind(self) } 
-                      active={ days[index] === self.state.activeDay }
-                      dayIndex={ dayIndex }
-                      key={ index }
-                  />)
-          })
-        }
+      <div>
+        <div className="daySelectorWrapper">
+          <h6 className="showingXDays">
+            { `Showing the next ${days.length} days.` }
+          </h6>
+          {
+            dates.map(function(dayIndex, index) {
+              return(<DaySelector
+                        onDayActive={ self.onDayActive.bind(self) }
+                        active={ days[index] === self.state.activeDay }
+                        dayIndex={ dayIndex }
+                        key={ index }
+                    />)
+            })
+          }
+        </div>
 
-        <div className="time-slots">
+        <div className="timeSlots">
           <h6 className="showingXSlots">
             { 
               this.showingXSlots()
@@ -89,7 +104,7 @@ class TimeSlots extends Component {
 
           <ul className='clearfix'> 
             {
-              timeSlots && Object.keys(timeSlots).map(function(timeSlot, index) {
+              filteredTimeSlots.map(function(timeSlot, index) {
                 return (<TimeSlot
                           onSlotActive={ self.onSlotActive.bind(self) } 
                           active={ timeSlots[timeSlot] === self.state.activeSlot }

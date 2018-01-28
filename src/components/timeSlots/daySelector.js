@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// import './daySelector.css'
-
-// import TimeSlot from './timeSlot'
-// import TimeSlotPropType from './timeSlotPropType'
+import './daySelector.css'
 
 class DaySelector extends Component {
   static propTypes = {
@@ -19,12 +16,17 @@ class DaySelector extends Component {
   }
 
   dateFormatter(dateIdx) {
-    const dateObj = new Date()
+    let dateObj = new Date();
+    dateObj.setDate(dateObj.getDate() + dateIdx);
     const year = dateObj.getFullYear();
     const month = dateObj.getMonth() + 1;
     const day = dateObj.getDate();
     const pad = function(val) { var str = val.toString(); return (str.length < 2) ? "0" + str : str};
     return([year, pad(month), pad(day)].join("-"));
+  }
+
+  numberOfSlots(dateIdx) {
+    return `x slots available`;
   }
 
   setActive(bool) {
@@ -34,12 +36,11 @@ class DaySelector extends Component {
   render() {
     return (
       <div className={ this.props.active ? "daySelector active" : "daySelector"} onClick={this.setActive.bind(this) }>
-          <ul className='clearfix'> 
-            {
-              this.dateFormatter(1)
-            }
-          </ul>
-    
+        <div className="innerDaySelector">
+          { this.props.dayIndex }
+          
+          <small>({ this.numberOfSlots(this.props.dayIndex) })</small>
+        </div>
       </div>
     );
   }

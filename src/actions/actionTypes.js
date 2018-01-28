@@ -18,3 +18,5 @@ export const ADD_FLASH_NOTIFICATION = 'ADD_FLASH_NOTIFICATION';
 
 // Set Selected TIme Slot
 export const SET_SELECTED_TIME_SLOT = 'SET_SELECTED_TIME_SLOT';
+// Set Selected Day
+export const SET_SELECTED_DAY = 'SET_SELECTED_DAY';
