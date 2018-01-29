@@ -8,6 +8,7 @@ class DaySelector extends Component {
     dayIndex: PropTypes.number.isRequired,
     active: PropTypes.bool.isRequired,
     onDayActive: PropTypes.func.isRequired,
+    numberOfSlots: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -15,18 +16,12 @@ class DaySelector extends Component {
     this.setActive = this.setActive.bind(this);
   }
 
-  dateFormatter(dateIdx) {
-    let dateObj = new Date();
-    dateObj.setDate(dateObj.getDate() + dateIdx);
-    const year = dateObj.getFullYear();
-    const month = dateObj.getMonth() + 1;
-    const day = dateObj.getDate();
-    const pad = function(val) { var str = val.toString(); return (str.length < 2) ? "0" + str : str};
-    return([year, pad(month), pad(day)].join("-"));
-  }
-
-  numberOfSlots(dateIdx) {
-    return `x slots available`;
+  numberOfSlots() {
+    if (this.props.numberOfSlots == 1) {
+      return `${this.props.numberOfSlots} slot available`;
+    } else {
+      return `${this.props.numberOfSlots} slots available`;
+    }
   }
 
   setActive(bool) {
@@ -38,8 +33,7 @@ class DaySelector extends Component {
       <div className={ this.props.active ? "daySelector active" : "daySelector"} onClick={this.setActive.bind(this) }>
         <div className="innerDaySelector">
           { this.props.dayIndex }
-          
-          <small>({ this.numberOfSlots(this.props.dayIndex) })</small>
+          <small>({ this.numberOfSlots() })</small>
         </div>
       </div>
     );

@@ -14,11 +14,6 @@ class Property extends React.Component {
     this.previewLink = this.previewLink.bind(this);
   }
 
-  previewLink() {
-    const { previewLink } = this.props.property;
-    return (`api/${previewLink}`);
-  }
-
   
   render() {
     const { id, title, createdAt, description } = this.props.property;

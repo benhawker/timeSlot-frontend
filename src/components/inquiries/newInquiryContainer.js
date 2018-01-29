@@ -73,8 +73,18 @@ class NewInquiryContainer extends Component {
     this.props.history.push("/");
   }
 
+  renderSelectedSlotText() {
+    if (Object.keys(this.props.selectedTimeSlot).length !== 0) {
+      return `You have chosen ${this.props.selectedTimeSlot.timeOfSlot}.`
+    } else {
+      return "Please select a time slot";
+    }
+  }
+
 
   render() {
+    console.log("hello")
+    console.log(this.props)
     const { timeSlots, timeSlotActions } = this.props;
 
     return (
@@ -88,7 +98,9 @@ class NewInquiryContainer extends Component {
             timeSlots={ timeSlots }
           />
         </div>
-        
+
+        { this.renderSelectedSlotText() }
+
         <SingleInput
           classes={ 'nameInput' }
           inputType={ 'text' }

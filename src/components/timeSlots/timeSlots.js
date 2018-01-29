@@ -38,8 +38,11 @@ class TimeSlots extends Component {
   onDayActive(day) {
     this.setState({activeDay: day});
     this.props.timeSlotActions.setSelectedDay(day);
-    console.log("Day now active");
-    console.log(this.state.activeDay);
+  }
+
+
+  numberOfAvailableSlots(day) {
+    return Object.keys(this.props.timeSlots).filter(ts => this.props.timeSlots[ts].timeOfSlot.includes(day)).length;
   }
 
   showingXSlots() {
@@ -77,12 +80,15 @@ class TimeSlots extends Component {
 
     let self = this;
 
+    console.log(dates);
+
     return (
       <div>
         <div className="daySelectorWrapper">
           <h6 className="showingXDays">
-            { `Showing the next ${days.length} days.` }
+            { `Showing the next ${days.length} days. There are ${Object.keys(timeSlots).length} slots available.`}
           </h6>
+
           {
             dates.map(function(dayIndex, index) {
               return(<DaySelector
@@ -90,6 +96,7 @@ class TimeSlots extends Component {
                         active={ days[index] === self.state.activeDay }
                         dayIndex={ dayIndex }
                         key={ index }
+                        numberOfSlots={ self.numberOfAvailableSlots(dayIndex) }
                     />)
             })
           }
