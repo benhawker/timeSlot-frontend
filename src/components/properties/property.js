@@ -8,12 +8,6 @@ class Property extends React.Component {
   static propTypes = {
     property: PropertyPropType.isRequired,
   }
-
-  constructor(props, context) {
-    super(props, context);
-    this.previewLink = this.previewLink.bind(this);
-  }
-
   
   render() {
     const { id, title, createdAt, description } = this.props.property;

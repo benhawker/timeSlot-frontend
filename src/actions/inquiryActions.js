@@ -2,20 +2,23 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import { addFlashNotification } from './flashNotificationActions';
 
-function createInquiry(inquiryId, timeSlotId, formParams) {
+function createInquiry(inquiryId, formParams) {
   return (dispatch) => {
     return axios.post(
-      `/api/inquiries/`,
+      `http://localhost:3004/api/inquiries/`,
       {
         inquiry: {
-          id: "some_id",
-          time_slot_id: "some_ts_id"
+          id: inquiryId,
+          time_slot_id: formParams.selectedTimeSlotId,
+          customer_name: formParams.customerName,
+          customer_phone: formParams.customerPhone,
+          customer_email: formParams.customerEmail,
         }
       }
     ).then(
       success => {
         dispatch(createInquirySuccess(success));
-        dispatch(addFlashNotification('Inquiry Created successfully.', 'success'));
+        dispatch(addFlashNotification('Inquiry sent successfully.', 'success'));
       },
       error => {
         dispatch(createInquiryFailure(error));

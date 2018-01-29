@@ -23,7 +23,7 @@ class TimeSlots extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {activeSlot: null, activeDay: null};
+    this.state = {selectedSlot: null, selectedDay: null};
     // this.setAsSelected = this.setAsSelected.bind(this);
     this.onSlotActive = this.onSlotActive.bind(this);
     this.onDayActive = this.onDayActive.bind(this);
@@ -31,12 +31,12 @@ class TimeSlots extends Component {
 
   onSlotActive(timeSlot) {
     // TODO: Decide which state to use.
-    this.setState({activeSlot: timeSlot});
+    this.setState({selectedSlot: timeSlot});
     this.props.timeSlotActions.setSelectedTimeSlot(timeSlot);
   }
 
   onDayActive(day) {
-    this.setState({activeDay: day});
+    this.setState({selectedDay: day});
     this.props.timeSlotActions.setSelectedDay(day);
   }
 
@@ -72,15 +72,10 @@ class TimeSlots extends Component {
       </p>
     );
 
-
-    console.log(this.state.activeDay);
-    let filteredTimeSlots = Object.keys(timeSlots).filter(ts => timeSlots[ts].timeOfSlot.includes(this.state.activeDay));
+    let filteredTimeSlots = Object.keys(timeSlots).filter(ts => timeSlots[ts].timeOfSlot.includes(this.state.selectedDay));
     const days = [1,2,3,4,5,6,7,8,9,10];
     let dates = days.map(day => this.dateFormatter(day));
-
     let self = this;
-
-    console.log(dates);
 
     return (
       <div>
@@ -93,7 +88,7 @@ class TimeSlots extends Component {
             dates.map(function(dayIndex, index) {
               return(<DaySelector
                         onDayActive={ self.onDayActive.bind(self) }
-                        active={ days[index] === self.state.activeDay }
+                        active={ dates[index] === self.state.selectedDay }
                         dayIndex={ dayIndex }
                         key={ index }
                         numberOfSlots={ self.numberOfAvailableSlots(dayIndex) }
@@ -114,7 +109,7 @@ class TimeSlots extends Component {
               filteredTimeSlots.map(function(timeSlot, index) {
                 return (<TimeSlot
                           onSlotActive={ self.onSlotActive.bind(self) } 
-                          active={ timeSlots[timeSlot] === self.state.activeSlot }
+                          active={ timeSlots[timeSlot] === self.state.selectedSlot }
                           key={ index }
                           timeSlot={ timeSlots[timeSlot] }
                       />)

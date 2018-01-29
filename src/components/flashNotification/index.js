@@ -15,7 +15,7 @@ class FlashNotification extends Component {
     this.notificationSystem.addNotification({
       message,
       level,
-      autoDismiss: 2
+      autoDismiss: 4
     });
   }
  

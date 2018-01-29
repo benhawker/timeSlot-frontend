@@ -6,6 +6,7 @@ import UUID from "node-uuid";
 
 import * as TimeSlotActions from '../../actions/timeSlotActions'
 import * as InquiryActions from '../../actions/inquiryActions'
+import { addFlashNotification } from '../../actions/flashNotificationActions';
 
 import TimeSlotPropType from '../timeSlots/timeSlotPropType'
 import TimeSlots from '../timeSlots/timeSlots'
@@ -23,6 +24,7 @@ class NewInquiryContainer extends Component {
     inquiryActions: PropTypes.shape({
       createInquiry: PropTypes.func.isRequired,
     }).isRequired,
+    addFlashNotification: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -55,13 +57,18 @@ class NewInquiryContainer extends Component {
   handleFormSubmit(e) {
     e.preventDefault();
 
+    if (Object.keys(this.props.selectedTimeSlot).length === 0) {
+      this.props.addFlashNotification("Please select a time slot before submitting the form.", 'error');
+      return;
+    }
+
     const inquiryId = UUID.v4();
 
     const formPayload = {
       customerName: this.state.customerName,
       customerPhone: this.state.customerPhone,
       customerEmail: this.state.customerEmail,
-      selectedTimeSlot: this.props.selectedTimeSlot,
+      selectedTimeSlotId: this.props.selectedTimeSlot.id,
     };
 
     console.log(formPayload);
@@ -81,10 +88,7 @@ class NewInquiryContainer extends Component {
     }
   }
 
-
   render() {
-    console.log("hello")
-    console.log(this.props)
     const { timeSlots, timeSlotActions } = this.props;
 
     return (
@@ -152,10 +156,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     timeSlotActions: bindActionCreators(TimeSlotActions, dispatch),
-    inquiryActions: bindActionCreators(InquiryActions, dispatch)
+    inquiryActions: bindActionCreators(InquiryActions, dispatch),
+    addFlashNotification: bindActionCreators(addFlashNotification, dispatch),
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewInquiryContainer);
-
-// export default(InquiryForm);
